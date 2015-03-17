@@ -5,6 +5,7 @@ use warnings;
 
 our $VERSION = "0.01";
 
+our $DEBUG = 0;
 
 
 1;
@@ -14,7 +15,7 @@ __END__
 
 =head1 NAME
 
-Amazon::SQS::Worker - It's new $module
+Amazon::SQS::Worker - Worker for Amazon SQS
 
 =head1 SYNOPSIS
 
@@ -33,7 +34,7 @@ it under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-yowcow E<lt>yowcow@gmail.comE<gt>
+yowcow E<lt>yowcow@cpan.org<gt>
 
 =cut
 
