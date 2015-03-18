@@ -18,7 +18,8 @@ sub work_on_message {
         $self->handle_job(decode_json($message->MessageBody));
     }
     catch {
-        $self->logger->error("Failed processsing a message " . $message->ReceiptHandle . ": $_")
+        $self->logger->error("Failed processsing a message "
+                . $message->ReceiptHandle . ": $_")
             if $self->logger;
     };
 
