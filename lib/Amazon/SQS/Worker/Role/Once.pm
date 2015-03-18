@@ -1,4 +1,4 @@
-package Amazon::SQS::Worker::Once;
+package Amazon::SQS::Worker::Role::Once;
 use Moo::Role;
 use strictures 2;
 

@@ -1,8 +1,8 @@
 package MyWorker::JobFails;
 use Moo;
 with qw(
-    Amazon::SQS::Worker::Common
-    Amazon::SQS::Worker::Once
+    Amazon::SQS::Worker::Role::Common
+    Amazon::SQS::Worker::Role::Once
 );
 use namespace::clean;
 use strictures 2;
@@ -16,8 +16,8 @@ sub handle_job {
 package MyWorker::JobOK;
 use Moo;
 with qw(
-    Amazon::SQS::Worker::Common
-    Amazon::SQS::Worker::Once
+    Amazon::SQS::Worker::Role::Common
+    Amazon::SQS::Worker::Role::Once
 );
 use namespace::clean;
 use strictures 2;

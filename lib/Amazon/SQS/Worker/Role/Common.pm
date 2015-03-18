@@ -1,4 +1,4 @@
-package Amazon::SQS::Worker::Common;
+package Amazon::SQS::Worker::Role::Common;
 use Moo::Role;
 use strictures 2;
 

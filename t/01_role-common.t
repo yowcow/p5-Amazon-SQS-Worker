@@ -1,6 +1,6 @@
 package MyWorker;
 use Moo;
-with 'Amazon::SQS::Worker::Common';
+with 'Amazon::SQS::Worker::Role::Common';
 use namespace::clean;
 
 
