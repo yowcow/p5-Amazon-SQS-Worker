@@ -11,7 +11,7 @@ subtest 'Test A::S::W::Exception::Once' => sub {
     is $e->file, __FILE__;
     is $e->package, 'main';
     like $e->line, qr|^\d+$|;
-    like $e->as_string, qr|Amazon::SQS::Worker::Exception::Once was thrown|;
+    like $e->as_string, qr|^Amazon::SQS::Worker::Exception::Once 'Hoge'|;
     ok !$e->do_retry;
     is "$e", $e->as_string;
 };
@@ -23,9 +23,11 @@ subtest 'Test A::S::W::Exception::Retry' => sub {
     is $e->file, __FILE__;
     is $e->package, 'main';
     like $e->line, qr|^\d+$|;
-    like $e->as_string, qr|Amazon::SQS::Worker::Exception::Retry was thrown|;
+    like $e->as_string, qr|^Amazon::SQS::Worker::Exception::Retry 'Hoge'|;
     ok $e->do_retry;
     is "$e", $e->as_string;
+
+    print $e;
 };
 
 done_testing;

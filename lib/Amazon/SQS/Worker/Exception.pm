@@ -23,13 +23,14 @@ sub throw {
 
 sub as_string {
     my $self = shift;
-    ref($self)
-        . ' was thrown in '
-        . $self->package . ' at '
-        . $self->file
-        . ' line '
-        . $self->line . ': "'
-        . $self->message . '"';
+    sprintf(
+        "%s '%s' in %s at %s(%s)",
+        ref($self),
+        $self->message,
+        $self->package,
+        $self->file,
+        $self->line,
+    );
 }
 
 package Amazon::SQS::Worker::Exception::Once;
