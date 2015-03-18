@@ -1,6 +1,6 @@
 # NAME
 
-Amazon::SQS::Worker - It's new $module
+Amazon::SQS::Worker - Worker for Amazon SQS
 
 # SYNOPSIS
 
@@ -19,4 +19,4 @@ it under the same terms as Perl itself.
 
 # AUTHOR
 
-yowcow <yowcow@gmail.com>
+yowcow <yowcow@cpan.org<gt>

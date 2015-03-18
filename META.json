@@ -1,7 +1,7 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Worker for Amazon SQS",
    "author" : [
-      "yowcow <yowcow@gmail.com>"
+      "yowcow <yowcow@cpan.org<gt>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.150001",
@@ -42,15 +42,39 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008001"
+            "Amazon::SQS::Simple" : "0",
+            "JSON::XS" : "0",
+            "Moo" : "0",
+            "Try::Tiny" : "0",
+            "namespace::clean" : "0",
+            "perl" : "5.008001",
+            "strictures" : "2"
          }
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.98"
+            "Test::Deep" : "0",
+            "Test::Exception" : "0",
+            "Test::Mock::Guard" : "0",
+            "Test::More" : "0.98",
+            "Test::Pretty" : "0"
          }
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/yowcow/p5-Amazon-SQS-Worker/issues"
+      },
+      "homepage" : "https://github.com/yowcow/p5-Amazon-SQS-Worker",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/yowcow/p5-Amazon-SQS-Worker.git",
+         "web" : "https://github.com/yowcow/p5-Amazon-SQS-Worker"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "yowcow <yowcow@gmail.com>"
+   ]
 }
