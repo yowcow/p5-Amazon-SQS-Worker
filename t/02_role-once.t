@@ -12,7 +12,6 @@ sub handle_job {
     die "Foo bar";
 }
 
-
 package MyWorker::JobOK;
 use Moo;
 with qw(
@@ -27,14 +26,12 @@ sub handle_job {
     $self->logger->debug("OK");
 }
 
-
 package main;
 use strict;
 use warnings;
 use Test::Mock::Guard;
 use Test::More;
 use Test::Pretty;
-use t::lib::MyLogger;
 
 subtest 'Test work_on_message and dies' => sub {
     my $guard = mock_guard(
@@ -48,18 +45,16 @@ subtest 'Test work_on_message and dies' => sub {
     );
 
     my $message = Amazon::SQS::Simple::Message->new(
-        {
-            Body    => qq|{"message":"Test"}|,
-            MD5OfBody   => 'my-md5-string',
-            MessageId   => 'my-message-id',
-            ReceiptHandle   => 'my-receipt-handle',
+        {   Body          => qq|{"message":"Test"}|,
+            MD5OfBody     => 'my-md5-string',
+            MessageId     => 'my-message-id',
+            ReceiptHandle => 'my-receipt-handle',
         },
     );
     my $w = MyWorker::JobFails->new(
         {   aws_access_key => 'my-access-key',
             aws_secret_key => 'my-secret-key',
             arn            => 'arn:aws:sqs:hoge:user:queue',
-            logger         => t::lib::MyLogger->new,
         }
     );
     $w->work_on_message($message);
@@ -79,18 +74,16 @@ subtest 'Test work_on_message and lives' => sub {
     );
 
     my $message = Amazon::SQS::Simple::Message->new(
-        {
-            Body    => qq|{"message":"Test"}|,
-            MD5OfBody   => 'my-md5-string',
-            MessageId   => 'my-message-id',
-            ReceiptHandle   => 'my-receipt-handle',
+        {   Body          => qq|{"message":"Test"}|,
+            MD5OfBody     => 'my-md5-string',
+            MessageId     => 'my-message-id',
+            ReceiptHandle => 'my-receipt-handle',
         },
     );
     my $w = MyWorker::JobOK->new(
         {   aws_access_key => 'my-access-key',
             aws_secret_key => 'my-secret-key',
             arn            => 'arn:aws:sqs:hoge:user:queue',
-            logger         => t::lib::MyLogger->new,
         }
     );
     $w->work_on_message($message);

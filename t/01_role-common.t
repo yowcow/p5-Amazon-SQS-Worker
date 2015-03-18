@@ -3,14 +3,12 @@ use Moo;
 with 'Amazon::SQS::Worker::Role::Common';
 use namespace::clean;
 
-
 package main;
 use strict;
 use warnings;
 use Test::Mock::Guard;
 use Test::More;
 use Test::Pretty;
-use t::lib::MyLogger;
 
 no warnings 'once';
 $Amazon::SQS::Worker::DEBUG = 1;
@@ -23,9 +21,10 @@ subtest 'Test accessors' => sub {
         }
     );
 
-    isa_ok $w->client, 'Amazon::SQS::Simple';
-    isa_ok $w->queue,  'Amazon::SQS::Simple::Queue';
+    isa_ok $w->client,       'Amazon::SQS::Simple';
+    isa_ok $w->queue,        'Amazon::SQS::Simple::Queue';
     isa_ok $w->block_sigset, 'POSIX::SigSet';
+    is $w->logger,           'Amazon::SQS::Worker::Logger';
 };
 
 subtest 'Test fetch_messages' => sub {
@@ -47,7 +46,6 @@ subtest 'Test fetch_messages' => sub {
         {   aws_access_key => 'my-access-key',
             aws_secret_key => 'my-secret-key',
             arn            => 'arn:aws:sqs:hoge:user:queue',
-            logger         => t::lib::MyLogger->new,
         }
     )->fetch_messages;
 
@@ -70,7 +68,6 @@ subtest 'Test delete_message' => sub {
         {   aws_access_key => 'my-access-key',
             aws_secret_key => 'my-secret-key',
             arn            => 'arn:aws:sqs:hoge:user:queue',
-            logger         => t::lib::MyLogger->new,
         }
     )->delete_message('hogehoge-handle');
 
@@ -92,7 +89,6 @@ subtest 'Test send_message' => sub {
         {   aws_access_key => 'my-access-key',
             aws_secret_key => 'my-secret-key',
             arn            => 'arn:aws:sqs:hoge:user:queue',
-            logger         => t::lib::MyLogger->new,
         }
     )->send_message([qw(hogehoge)]);
 

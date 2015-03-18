@@ -3,6 +3,8 @@ use Moo::Role;
 use strictures 2;
 
 use Amazon::SQS::Simple;
+use Amazon::SQS::Worker;
+use Amazon::SQS::Worker::Logger;
 use JSON::XS qw(encode_json);
 use POSIX qw(:signal_h);
 
@@ -23,7 +25,7 @@ has block_sigset => (
 );
 has logger => (
     is      => 'rw',
-    default => sub { },
+    default => sub { 'Amazon::SQS::Worker::Logger' },
 );
 has wait_interval => (
     is      => 'rw',
@@ -49,7 +51,8 @@ sub fetch_messages {
     my $self = shift;
 
     $self->logger->debug('Fetching messages...')
-        if is_debug() and $self->logger;
+        if is_debug()
+        and $self->logger;
 
     $self->queue->ReceiveMessage(
         WaitTimeSeconds     => $self->wait_time_seconds,
@@ -61,7 +64,8 @@ sub delete_message {
     my ($self, $receipt_handle) = @_;
 
     $self->logger->debug("Deleting a message: $receipt_handle")
-        if is_debug() and $self->logger;
+        if is_debug()
+        and $self->logger;
 
     $self->queue->DeleteMessage($receipt_handle);
 }
@@ -70,7 +74,8 @@ sub send_message {
     my ($self, $data) = @_;
 
     $self->logger->debug('Sending a message...')
-        if is_debug() and $self->logger;
+        if is_debug()
+        and $self->logger;
 
     $self->queue->SendMessage(encode_json($data));
 }
@@ -80,13 +85,15 @@ sub work {
     my $class = ref($self);
 
     $self->logger->debug("Hello, $class is starting up to work now")
-        if is_debug() and $self->logger;
+        if is_debug()
+        and $self->logger;
 
     while (1) {
         my @messages = $self->fetch_messages;
 
         $self->logger->debug('Got ' . scalar(@messages) . ' message(s).')
-            if is_debug() and $self->logger;
+            if is_debug()
+            and $self->logger;
 
         $self->work_on_message($_) for @messages;
 
