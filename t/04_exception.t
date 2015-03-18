@@ -26,8 +26,6 @@ subtest 'Test A::S::W::Exception::Retry' => sub {
     like $e->as_string, qr|^Amazon::SQS::Worker::Exception::Retry 'Hoge'|;
     ok $e->do_retry;
     is "$e", $e->as_string;
-
-    print $e;
 };
 
 done_testing;
