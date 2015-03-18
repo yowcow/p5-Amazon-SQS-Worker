@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/yowcow/p5-Amazon-SQS-Worker.svg?branch=master)](https://travis-ci.org/yowcow/p5-Amazon-SQS-Worker)
 # NAME
 
 Amazon::SQS::Worker - Worker for Amazon SQS

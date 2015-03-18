@@ -1,4 +1,4 @@
 name = "Amazon-SQS-Worker"
-# badges = ["travis"]
+ badges = ["travis"]
 module_maker="ModuleBuildTiny"
 
