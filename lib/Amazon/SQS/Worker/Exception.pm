@@ -52,3 +52,45 @@ use overload '""' => sub { shift->as_string };
 sub do_retry { 1 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Amazon::SQS::Worker::Exception - exceptions for workers
+
+=head1 SYNOPSIS
+
+    die Amazon::SQS::Worker::Exception::Once->throw('No retry');
+
+    die Amazon::SQS::Worker::Exception::Retry->throw('Do retry');
+
+=head1 DESCRIPTION
+
+=head1 METHODS
+
+=head2 throw($message)
+
+Creates a new exception instance.
+
+=head2 as_string
+
+Returns detailed exception information.
+
+=head2 do_retry
+
+Returns 0 if not to do retry, or 1 if to do retry.
+
+=head1 LICENSE
+
+Copyright (C) yowcow.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+yowcow E<lt>yowcow@cpan.org<gt>
+
+=cut
+
