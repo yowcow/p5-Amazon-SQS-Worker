@@ -28,3 +28,48 @@ sub work_on_message {
 }
 
 1;
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+Amazon::SQS::Worker::Role::Once - A behavior to process a message only once
+
+=head1 SYNOPSIS
+
+In your worker:
+
+    package Your::Worker;
+    use Moo;
+    with qw(
+        Amazon::SQS::Worker::Role::Common
+        Amazon::SQS::Worker::Role::Once
+    );
+
+    sub handle_job { ... }
+
+=head1 DESCRIPTION
+
+Amazon::SQS::Worker::Role::Once provices a behavior to process a message from Amazon SQS only once, not more than once.
+
+=head1 METHODS
+
+=head2 work_on_message
+
+Accepts a L<Amazon::SQS::Simple::Message> object and calls C<handle_job> while blocking signals.
+
+=head1 LICENSE
+
+Copyright (C) yowcow.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 AUTHOR
+
+yowcow E<lt>yowcow@cpan.org<gt>
+
+=cut
+
